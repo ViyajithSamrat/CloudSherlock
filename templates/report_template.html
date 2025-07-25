@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CloudSherlock Anomaly Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; background: #f4f4f4; }
+        h1 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 1rem; }
+        th, td { padding: 12px; border: 1px solid #ccc; text-align: left; }
+        th { background: #2c3e50; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+        .footer { margin-top: 2rem; font-size: 0.9rem; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>📊 CloudSherlock Anomaly Report</h1>
+    <p>Generated on {{ date }}</p>
+    {% if anomalies %}
+    <table>
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for anomaly in anomalies %}
+            <tr>
+                <td>{{ anomaly.service }}</td>
+                <td>{{ anomaly.date }}</td>
+                <td>₹{{ anomaly.cost }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p><strong>No anomalies detected.</strong></p>
+    {% endif %}
+    <div class="footer">
+        Powered by CloudSherlock | Offline Report
+    </div>
+</body>
+</html>
